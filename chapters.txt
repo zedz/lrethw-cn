@@ -1,53 +1,52 @@
 The Setup
-XXX
-XXX
-XXX
-XXX
-XXX
-XXX
-XXX
-XXX
-XXX
-XXX
-XXX
-XXX
-XXX
-XXX
-XXX
-XXX
-XXX
-XXX
-XXX
-XXX
-XXX
-XXX
-XXX
-XXX
-XXX
-XXX
-XXX
-XXX
-XXX
-XXX
-XXX
-XXX
-XXX
-XXX
-XXX
-XXX
-XXX
-XXX
-XXX
-XXX
-XXX
-XXX
-XXX
-XXX
-XXX
-XXX
-XXX
-XXX
-XXX
-XXX
-XXX
-XXX
+Your First Regex
+Finding Specific Strings
+Matching Any Character
+Matching Sets Of Characters
+Inverting Sets Of Characters
+Translating Simple Regex
+The Beginning And End
+Optional Elements
+Repetition, Repetition
+Frugality In All Things
+This Or That
+Translating Complex Regex
+Escaping Things
+Escape Sequences You May Need
+Grouping And Captures
+Minimum And Maximum
+The Limits Of Regular Expressions
+Useful Extensions
+Verbose Regex With Comments
+Named Captures
+Extensions To Avoid
+Translating Insane Regex
+Memorize Your Symbology
+Debugging Regex
+Mid-term Exam
+When Not To Use Regex
+Using sed To Alter Files
+Writing Edit Scripts for sed
+Using sed Syntax In Vim
+Hot Vim Tricks With Regex
+Using grep To Find Stuff
+Grepping For Specific Things
+Code Searching With ack
+Simple Reporting Wtih awk
+Using Regex In Python
+Using Regex In Ruby
+Using Regex In JavaScript
+Using Regex In C
+The Concept Of Lexing
+Designing A Lexicon
+Writing The Lexer In Python
+Testing The Python Lexer
+Writing The Lexer In Ruby
+Testing The Ruby Lexer
+How A Simple Parser Works
+Designing The Grammar
+Writing The Parser In Python
+Testing The Python Parser
+Writing The Parser In Ruby
+Testing The Ruby Parser
+Final Exam
