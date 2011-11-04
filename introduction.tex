@@ -110,8 +110,8 @@ a particular job.
 
 The problem that all symbolic languages have is an expert in them, using time
 and continuous evolution, can eventually describe everything as one gigantic
-equation.  They start with something simple, and then as they tack on hack
-after hack to handle more and more edge cases things get worse.  In regular
+equation.  They start with something simple and go bad as they tack on hack
+after hack to handle more and more edge cases.  In regular
 expressions you end up with the infamous infamous
 \href{http://www.ex-parrot.com/pdw/Mail-RFC822-Address.html}{Mail::RFC822::Address}
 monstrosity.  Here's just the top 6 lines of all \emph{82} lines in this
@@ -130,7 +130,7 @@ one regular expression:
 
 This isn't regular expression's fault, it's the fault of people abusing the
 tool when there's other tools more suitable.  In this case, a simple lexer
-lexer that used smaller regular expressions would work better and most likely
+that used smaller regular expressions would work better and most likely
 be faster and less error prone.  More importantly, a lexer could report
 \emph{errors} and tell you where something failed to pass.  Tools like lex,
 re2c, and Ragel all make this easier than the above.
@@ -142,7 +142,7 @@ to cram an email address parser into one a regular expression, and what they
 end up with is not a succinct clean expression, but still a giant bursting at
 the seams.
 
-\section{Avoiding Giants In Tiny Pants With Parsing}
+\section{Slaying Giants In Tiny Pants With Parsing}
 
 The key to using regular expressions correctly is to know where their
 usefulness ends and when you need to bust out a lexer.  You also need to know
