@@ -1,3 +1,186 @@
 \chapter*{Introduction: Giants In Tiny Pants}
 
+Do you like word problems? You know those annoying "math" questions you had to 
+study in class simply because the SAT used them.  They went something like this:
+
+\begin{quote}
+"A train leaving a station at 10:50pm from San Francisco is travelling at
+40MPH.  Another train leaving Chicago at 12:00pm is going 60MPH.  At which
+point will the two trains cross paths."
+\end{quote}
+
+Even today, after studying years of advanced mathematics, statistics, and 
+computer science, I \emph{still} can't solve these things.  The reason is
+they're an attempt to hide an actual equation from you with convoluted
+English wording.  Rather than just give you a straight math problem, like
+$ax + b = c$ they want you to "reverse engineer" the real equation from
+this pile of ambiguity.  In an attempt to simplify mathematics these 
+types of questions actually end up obfuscating the real symbolic language
+behind them.
+
+Imagine if \emph{all} mathematics was like this where every single problem you
+encountered, no matter how simple or complex, was only written as English
+because nobody understood the symbols.  This would drive you crazy, even if you
+didn't know mathematics.  Without the symbols of mathematics we'd find
+mathematics degenerate to one Jacques Derrida style "obscurantisme terroriste"
+paper after another.  They'd be no better than Philosophers!
+
+Thankfully, humans invented symbols to succinctly describe the things that
+symbols are best at describing, and left human languages to describe the
+rest.\footnote{Thankfully, the things that can be described with symbols is pretty
+small or else nobody would be able to read.}  The symbolic languages act as
+building blocks to construct complex structures in a short space that would
+take entire books in English to describe.
+
+The power of symbolic languages is that, once you learn them, they can
+describe things more quickly and accurately than a human language can.
+
+\section{Regular Expressions Are Character Algebra}
+
+Regular expressions, or regex, is a symbolic language that describe how to
+identify a sequence of integers (or, more practically, characters) as matching
+a required set.  Compared to mathematics regular expressions are pathetically
+tiny.  There's only a few symbols to learn, and they have exact specific meanings.
+This makes them easy to learn, given that you actually put in the time to 
+learn to read and write them.
+
+Effectively a regular expression is the algebra equation to a programming
+language's word problem.  With them you can describe things that would take
+mountains of code if you were to write it by hand.  This is why they exist,
+but being symbolic languages most people simply hate them because most
+people are never taught how to learn a symbolic language.
+
+
+\section{How To Learn A Symbolic Language}
+
+When you read a line of code like this:
+
+\begin{lstlisting}
+name.match(/^[\da-z]+\d$/);
+\end{lstlisting}
+
+You probably actually see this:
+
+\begin{lstlisting}
+name.match(justabunchofrandomjunkallsmashedtogether);
+\end{lstlisting}
+
+Your eyes most likely hit that part inside the parenthesis and try to process it as if it were
+\emph{one cohesive word}.  The truth is each \emph{character} inside the parenthesis is actually
+like a whole word or even a phrase.  What trips you up is you're used to reading sentences where
+there's spaces between whole words and periods that end cohesive thoughts.  When you try to 
+read this, you have to stop and tease the this one "word" apart into what it's actually doing.
+
+However, if you've been programming for a while, you're already processing and understanding
+a symbolic language, just one that's a bit closer to a human language.  What you need to do
+is take this tiny bit of symbolic literacy skill and turn it into a real skill at reading
+symbols.  To do this you need to do what you do when learning any language: Translate it
+to and from the language you're currently know the best.
+
+Imagine if you could write your regular expressions like this:
+
+\begin{lstlisting}
+name.match(/
+        ^    # from the beginning
+        [    # a set of chars containing
+          \d # any digit
+          a  # the letter a
+          -  # through
+          z  # the letter z
+        ]    # end class
+        +    # one or more
+        \d   # any digit
+        $    # to the end
+        /);
+\end{lstlisting}
+
+Now it makes a bit more sense because every symbol in the regex is explained in
+English.  You can now say, "Match from the start a set of one or more digits or
+a-z followed by any digit to the end of the string." You could even get more
+succinct and say, "Match completely one more digits or lowercase letters
+followed by a digit."
+
+In this book I'm going to teach you to read regular expressions by showing you how
+to convert them back and forth from English such that you can break down any that you
+find.  You'll also learn good habits for writing regular expressions, and more importantly
+when to \emph{not} use them.  They're handy tools, but like any tool they're for
+a particular job.
+
+\section{The Giants In Tiny Pants Problem}
+
+The problem that all symbolic languages have is an expert in them, using time
+and continuous evolution, can eventually describe everything as one gigantic
+equation.  They start with something simple, and then as they tack on hack
+after hack to handle more and more edge cases things get worse.  In regular
+expressions you end up with the infamous infamous
+\href{http://www.ex-parrot.com/pdw/Mail-RFC822-Address.html}{Mail::RFC822::Address}
+monstrosity.  Here's just the top 6 lines of all \emph{82} lines in this
+one regular expression:
+
+\begin{lstlisting}
+(?:(?:\r\n)?[ \t])*(?:(?:(?:[^()<>@,;:\\".\[\] \000-\031]+(?:(?:(?:\r\n)?[ \t]
+)+|\Z|(?=[\["()<>@,;:\\".\[\]]))|"(?:[^\"\r\\]|\\.|(?:(?:\r\n)?[ \t]))*"(?:(?:
+\r\n)?[ \t])*)(?:\.(?:(?:\r\n)?[ \t])*(?:[^()<>@,;:\\".\[\] \000-\031]+(?:(?:(
+?:\r\n)?[ \t])+|\Z|(?=[\["()<>@,;:\\".\[\]]))|"(?:[^\"\r\\]|\\.|(?:(?:\r\n)?[ 
+\t]))*"(?:(?:\r\n)?[ \t])*))*@(?:(?:\r\n)?[ \t])*(?:[^()<>@,;:\\".\[\] \000-\0
+31]+(?:(?:(?:\r\n)?[ \t])+|\Z|(?=[\["()<>@,;:\\".\[\]]))|\[([^\[\]\r\\]|\\.)*\
+](?:(?:\r\n)?[ \t])*)(?:\.(?:(?:\r\n)?[ \t])*(?:[^()<>@,;:\\".\[\] \000-\031]+
+... for 82 lines ...
+\end{lstlisting}
+
+This isn't regular expression's fault, it's the fault of people abusing the
+tool when there's other tools more suitable.  In this case, a simple lexer
+lexer that used smaller regular expressions would work better and most likely
+be faster and less error prone.  More importantly, a lexer could report
+\emph{errors} and tell you where something failed to pass.  Tools like lex,
+re2c, and Ragel all make this easier than the above.
+
+I call this the "giant in tiny pants problem" because you're taking something
+that's actually a giant complex piece of code, and trying to cram all of it
+in the tiny pants of a regular expression.  In the above example they're trying
+to cram an email address parser into one a regular expression, and what they
+end up with is not a succinct clean expression, but still a giant bursting at
+the seams.
+
+\section{Avoiding Giants In Tiny Pants With Parsing}
+
+The key to using regular expressions correctly is to know where their
+usefulness ends and when you need to bust out a lexer.  You also need to know
+where a lexer falls down and when a parser is the right tool.  When you
+use regular expressions to simplify creating lexers that feed into simple
+parsers you then have a set of tools for cleaning and accurately parsing
+text without going insane.
+
+In this book I'm going to subversively teach you parsing, but I'm going
+to be very practical and straight forward about it.  No NFA to DFA conversion.
+No crazy explanations of push down finite state automata.  Just practical
+code that gets you introduced to the basics of parsing, understanding the
+core theory, and then actually using them to get work done.
+
+
+\section{How To Use This Book}
+
+As with all of my "Learn The Hard Way" books, the best way to use this
+book is to do the work.  That means sitting down with each exercise,
+actually typing all of the code in, reading about what you did, and
+doing the extra credit.  You cannot learn these concepts without
+actually doing the work and practicing them.  Otherwise you might
+as well just save your money and continue to suck at programming.
+
+A good way to do the book is to go "low and slow".  Rather than
+sit down on Saturday and cram 8 exercises out in a 10 hour marathon,
+you should spend 1 hour a night and do 1 or 2 exercises.  Sometimes
+you'll blaze through exercises and other times you'll get stuck and
+need to study.  Some exercise you might have to struggle with for
+a week before moving on.  But, your average should be about 1 a day
+and consistent steady study is more important than cramming.
+
+The reason I give this advice is you've got to train and retrain
+your brain to understand this new language, and the best way to
+do that is with repetition and practice.  Otherwise you just cheat
+yourself and end up \emph{thinking} you've learned something when
+you've really done nothing but become familiar with the material.
+
+Enjoy the book, and if you need help, just email \href{mailto:help@shavian-publishing.com}{help@shavian-publishing.com}
+and I'll give you pointers.
 
