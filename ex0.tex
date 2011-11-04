@@ -1,17 +1,72 @@
 \chapter{Exercise 0: The Setup}
 
+Teaching regular expressions can be difficult because they are typically embedded into 
+a programming language or a tool like \file{sed}.  This is compounded by differences
+between most of these implementations.  Rather than have you get stuck in various 
+different flavors of regex hell, I've created a very small project called 
+\href{Regetron}{https://gitorious.org/regetron} which gives you a simple shell
+for experimenting with regular expressions.  It uses Python's version of regex, but
+those are pretty close to the 90\% of regex you'll actually use.
 
-The code and explanation goes here.
+To install Regetron simply do this:
 
-\section{What You Should See}
+\begin{enumerate}
+\item Install Python if you don't have it.
+\item Install PIP and distribute using \href{http://pypi.python.org/pypi/distribute}.
+\item Run \verb|pip install regetron|
+\end{enumerate}
 
-What it looks like to run it is here.
+Alternatively, you can go to the \href{Regetron project page}{https://gitorious.org/regetron}
+and get the source to install like this:
+
+\begin{lstlisting}
+$ git clone git://gitorious.org/regetron/regetron.git
+$ cd regetron
+$ sudo python setup.py install
+\end{lstlisting}
+
+Once you have Regetron, you try running it and doing some things with it:
+
+\begin{lstlisting}
+$ regetron
+Regetron! The regex teaching shell.
+Type your regex at the prompt and hit enter. It'll show you the
+lines that match that regex, or nothing if nothing matches.
+Hit CTRL-d to quit (CTRL-z on windows).
+> !data "Hello World!"
+> .*W.*
+0000: Hello World!
+> Cats
+> 
+\end{lstlisting}
+
+
+\section{How To Use Regetron}
+
+How this works is you give Regetron a file or a string of data, and then you
+type in regular expressions (regex).  You can see this when I type \verb|!data "Hello World!"|
+to setup a string to work with, then did a regex against it
+\verb|.*W.*|.  If a regex matches then it will print out the lines that it
+found matched.  If nothing matches then it prints nothing.  That's what 
+happened when I typed \verb|Cats|.
+
+Regetron has a few commands and options as well:
+
+\begin{enumerate}
+\item If you give it a file on the command line it will load that: \verb|regetron somefile.txt|
+\item If you type \verb|!| and hit ENTER it will go into "verbose mode" which we'll use heavily in the book.  To finish in verbose mode and run the regex
+    just enter a blank line.
+\item The command \verb|!data EXP| will run any Python expression (EXP) and and set that as the data.  Try \verb|!data "LOTS OF ME" * 100| and then
+    try regex \verb|.*ME.*| to see that it duplicated the line 100 times.
+\item The command \verb|!help| will print the available commands.
+\item \verb|!load FILE| will load the given file for your data.
+\item \verb|!match| toggles whether regex are run in match vs. search mode.  We'll cover that later.
+\item If you have readline installed, then Regetron will give you a readline scrollback and edit feature.
+\item To exit, just use CTRL-d (or CTRL-z on Windows) and it'll exit.
+\end{enumerate}
 
 \section{Extra Credit}
 
-Extra things you should do on your own to learn more.
+For this exercise just play with Regetron and make sure you're comfortable with it.
 
-\section{Portability Notes}
-
-Potential portability problems with this concept in other databases.
 
