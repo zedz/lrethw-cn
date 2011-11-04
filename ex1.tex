@@ -1,17 +1,65 @@
 \chapter{Exercise 1: Your First Regex}
 
+Start up Regetron again and type this in:
 
-The code and explanation goes here.
+\begin{code}{ex1.reg}
+\begin{Verbatim}
+!data "The lazy dog\nsleeps in the yard."
+.*lazy.*
+[A-Z][a-z]*
+[a-z]\.
+\end{Verbatim}
+\end{code}
+
+Enter each of these lines as commands to regetron, and make sure you get
+them right.
 
 \section{What You Should See}
 
-What it looks like to run it is here.
+Compare what you get for output with what I have below and
+make sure it's the same.
+
+\begin{code}{ex1.reg}
+\begin{Verbatim}
+> !data "The lazy dog\nsleeps in the yard."
+> .*lazy.*
+0000: The lazy dog
+> [A-Z][a-z]*
+0000: The lazy dog
+> [a-z]\.
+0001: sleeps in the yard.
+\end{Verbatim}
+\end{code}
+
+I've skipped showing you my entire shell session for starting
+Regetron here, and won't show it unless it matters to the exercise.
+Just assume that I started Regetron and entered this text in at the
+\verb|> | prompts, then it printed the response under it.
+
+What Regetron does is take you type, convert it to a regular expression,
+and then runs that regular expression on each line.  In the above
+we set the data to these two lines:
+
+\begin{Verbatim}
+The lazy dog
+sleeps in the yard.
+\end{Verbatim}
+
+If a regular expression matches a line, then it gets printed.  In the
+above you can see the first line gets matched twice, and the second
+only by the last regular expression.
 
 \section{Extra Credit}
 
-Extra things you should do on your own to learn more.
-
-\section{Portability Notes}
-
-Potential portability problems with this concept in other regex.
+\begin{enumerate}
+\item Try entering a word that is not in either of the lines so you can see
+    that Regetron prints nothing.  Like "pizza". Doesn't matter what it is.
+\item Give regetron a file of text with \verb|regetron myfile.txt| and then
+    try these same expressions to see what you get.  Make sure you do \emph{not}
+    enter the first \verb|!data| command.
+\item Do the same thing with the \verb|!load| command.
+\item Flip "match" mode on with \verb|!match| and try these expressions again.
+    Can you explain what's going on?
+\item If you know Python, go read Regetron's code.  It's pretty small.
+\end{enumerate}
 
