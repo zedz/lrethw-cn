@@ -1,17 +1,50 @@
 \chapter{Exercise 5: Inverting Sets Of Characters}
 
+Well, it's probably not a good idea to offend Cthuhlu, so we actually want
+to match every line that \emph{does not} have vowels.  Normally that would
+involve you writing out all of the characters that don't match, which is
+tedious and dumb.  Instead, you can invert the set by putting a '^' (caret)
+as the first character inside the set.
 
-The code and explanation goes here.
+\begin{code}{ex5.regex}
+\begin{Verbatim}
+<< d['code/ex5.regex|dexy'] >>
+\end{Verbatim}
+\end{code}
+
+To make this work I have to switch to !match mode, which will actually
+match the first character.  I also have to use a more complete "vowels"
+set since I didn't have capital letters in the previous exercise.  Once
+you have that, put the '^' at the front and it will now be an inverse
+set.
 
 \section{What You Should See}
 
-What it looks like to run it is here.
+When you run this it should only print the thing Cthuhlu said:
+
+\begin{code}{ex5.out}
+\begin{Verbatim}
+<< d['code/ex5.out|dexy'] >>
+\end{Verbatim}
+\end{code}
+
+There's something else you might have missed in the last exercise.
+The above character set is matching \emph{one} character, but you can
+make a regex that is two sets and it will match one, then the next.
+You could do \verb|[a-z][A-Z][0-9]| and that would match, "A lowercase
+letter followed by an uppercase letter followed by a number."
 
 \section{Extra Credit}
 
-Extra things you should do on your own to learn more.
+\begin{enumerate}
+\item Create another class that is "everything except X" so that it
+    doesn't match Cthulhu's line.
+\item Go back and update your phone number matching regex so that it's
+    "not letters" instead.
+\end{enumerate}
 
 \section{Portability Notes}
 
-Potential portability problems with this concept in other regex.
+Some regex engines don't have this feature. Those regex engines suck
+since it's a trivial thing to implement and is a commonly needed operation.
 
