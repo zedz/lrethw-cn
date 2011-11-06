@@ -1,0 +1,7 @@
+> !data "The lazy dog\nsleeps in the yard."
+> .*lazy.*
+0000: The lazy dog
+> [A-Z][a-z]*
+0000: The lazy dog
+> [a-z]\.
+0001: sleeps in the yard.

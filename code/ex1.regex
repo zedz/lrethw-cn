@@ -1,0 +1,4 @@
+!data "The lazy dog\nsleeps in the yard."
+.*lazy.*
+[A-Z][a-z]*
+[a-z]\.

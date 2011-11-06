@@ -1,17 +1,64 @@
 \chapter{Exercise 2: Finding Specific Strings}
 
+\begin{note}
+If you have Regetron 1.1 then please upgrade to the latest Regetron so that
+this exercise will work.  Version 1.2 and greater has the features you need.
+\end{note}
 
-The code and explanation goes here.
+The simplest thing you can do with a regex is find specific words or characters.
+To do that you just type the characters.  The caveat though is you can't use any
+of the characters that regex uses for its own syntax.  I'll show you how to do that
+later.  For now, let's just stick to letters.
+
+In this exercise we'll also learn how to run Regetron like it's a script.
+Create a file with this in it named \file{ex2.txt}:
+
+\begin{code}{ex2.txt}
+\begin{Verbatim}
+<< d['code/ex2.txt|dexy'] >>
+\end{Verbatim}
+\end{code}
+
+I'll be calling these input files the "corpus" so you know they're the
+"thing a regex searches through".
+
+Make another file named \file{ex2.regex} that will be a little
+"regex script" you'll run against the one above:
+
+\begin{code}{ex2.regex}
+\begin{Verbatim}
+<< d['code/ex2.regex|dexy'] >>
+\end{Verbatim}
+\end{code}
+
+You'll then run these two by doing \verb|regetron ex2.txt ex2.regex| 
+to produce the output and see if you got it right.
 
 \section{What You Should See}
 
-What it looks like to run it is here.
+When you run the command you'll get an output that looks like you 
+were typing all of this in manually:
+
+\begin{code}{ex2.out}
+\begin{Verbatim}
+<< d['code/ex2.out|dexy'] >>
+\end{Verbatim}
+\end{code}
+
+We won't do this all the time, but there will be times when I'll have you write
+out large regex in "verbose" mode (covered later) and it'll be much easier
+for you if you can put the whole thing in a file.
+
+Taking a look at this exercise you can see that if you put a word, or any character,
+then regetron finds it. If the word isn't in the corpus then it's not found, as with
+"cucumber".
 
 \section{Extra Credit}
 
-Extra things you should do on your own to learn more.
-
-\section{Portability Notes}
-
-Potential portability problems with this concept in other regex.
+\begin{enumerate}
+\item Take this script and run regetron like normal against the file, but type
+    the script in manually.  To do this you'll run regetron with 
+    \verb|regetron ex2.txt| thus not including the script at the end.
+\item Augment the corpus and try other words to make sure you know what's happening.
+\end{enumerate}
 

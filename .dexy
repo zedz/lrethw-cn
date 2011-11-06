@@ -7,7 +7,9 @@
     "*.sql|pyg|l": {},
     "*.conf|dexy": {},
     "*Makefile|dexy": {},
+    "*.regex|dexy": {},
     "*.out|dexy": {},
     "*.css|jinja" : {  },
-    "*.cfg|jinja" : {  }
+    "*.cfg|jinja" : {  },
+    "*.txt|dexy" : {}
 }
