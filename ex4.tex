@@ -1,17 +1,69 @@
 \chapter{Exercise 4: Matching Sets Of Characters}
 
+Imagine you wanted to match only lines that had vowels.  To test this out
+we'll use a contrived conversation about Cthuhlu:
 
-The code and explanation goes here.
+\begin{code}{ex4.txt}
+\begin{Verbatim}
+<< d['code/ex4.txt|dexy'] >>
+\end{Verbatim}
+\end{code}
+
+There's two lines with vowels, and then what Cthuhlu says doesn't have vowels.
+We'd like to just ignore what he says so let's make a regex script to do that:
+
+\begin{code}{ex4.regex}
+\begin{Verbatim}
+<< d['code/ex4.regex|dexy'] >>
+\end{Verbatim}
+\end{code}
+
+You can either type that into \file{ex4.regex} and run it, or just run
+\verb|regetron ex4.txt| and then enter that into the shell.
+
+What that one line does is create a "set" of characters you want to match.
+It's kind of like saying "I want to match 'a' or 'e' or 'i' or 'o' or 'u' or 'y'."
+Another way to say this is, "Match any line with any one of these chars: aeiouy".
+
+There's a few other things you can do with sets, but run this and see what you
+get before I continue.
 
 \section{What You Should See}
 
-What it looks like to run it is here.
+\begin{code}{ex4.out}
+\begin{Verbatim}
+<< d['code/ex4.out|dexy'] >>
+\end{Verbatim}
+\end{code}
+
+See how it removed the line in the middle that didn't have vowels (the
+line Cthulhu said).  It did this because, after scanning each character,
+it didn't find 1 that matched the set you specified.
+
+\section{Ranges Of Characters}
+
+This is really handy, but it will be tedious if you had to enter in an
+entire alphabet or all the numbers when you wanted to match those.  For
+this common case you can use a range of characters by putting a 
+'-' (dash) between them.  For example, \verb|[a-zA-Z]| will match
+all characters "a through z" or "A through Z" thus matching all upper
+or lowercase characters.
 
 \section{Extra Credit}
 
-Extra things you should do on your own to learn more.
+\begin{enumerate}
+\item Write another regex that matches only lowercase characters.  Use a range
+    for it.
+\item Add some numbers to the corpus text, and then write a regex with the
+    numbers in a range (like 0-9).
+\item Run regetron and use !data to set your phone number.  Now write a regex
+    that matches your phone number using the range sets.
+\end{enumerate}
 
 \section{Portability Notes}
 
-Potential portability problems with this concept in other regex.
+It's unclear how some regex engines will treat some human languages and alphabets
+when doing a range.  Double check your documentation to make sure it's even
+possible.
+
 
