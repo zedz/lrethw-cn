@@ -1,17 +1,58 @@
 \chapter{Exercise 3: Matching Any Character}
 
+Finding words is nice, but you can just do that with normal
+string operations.  What about finding \emph{patterns} of text?
+The first kind of pattern is to have a regex match any single 
+character.  You do this with the '.' (dot) operator, which
+says "match any one character here".
 
-The code and explanation goes here.
+Continuing with the corpus we've been using, here's
+a new script for you to type:
+
+\begin{code}{ex3.regex}
+\begin{Verbatim}
+<< d['code/ex3.regex|dexy'] >>
+\end{Verbatim}
+\end{code}
+
+You can see I'm sort of searching for the same things as before, but instead
+of the actual words, I'm putting a random '.' (dot) character to make that
+character a variable match.
 
 \section{What You Should See}
 
-What it looks like to run it is here.
+When you run this against \file{ex2.txt} you should see this:
+
+\begin{code}{ex3.out}
+\begin{Verbatim}
+<< d['code/ex3.out|dexy'] >>
+\end{Verbatim}
+\end{code}
+
+That should be close to what you expected, except for the matches for
+\verb|y....| which matches \emph{both} lines.  The reason is it matches
+"yard." from the 2nd line as you expect, but it also matches "y dog"
+from the first line.  See how it's a 'y' and 4 characters?  The regex
+doesn't care that those characters are chunks of two words, it will match
+them without any knowledge of the English language.
+
 
 \section{Extra Credit}
 
-Extra things you should do on your own to learn more.
+\begin{enumerate}
+\item Use !match to switch from search to match mode and then see if you
+    get the same results.  Why?
+\item Write a line of only '.' (dot) sequences that matches the 2nd line
+    but not the first.
+\item Using a '\' (backslash) let's you escape the '.' to tell the regex
+    that you mean "no actually match this as a ."  Use that to fix the
+    3rd regex so it only matches the 2nd line of the corpus.
+\end{enumerate}
 
 \section{Portability Notes}
 
-Potential portability problems with this concept in other regex.
+Some regular expression engines mean different things when they say "everything".
+In Python "everything" means, "Well, not newline chars or just random stuff
+we decided wasn't really everything."  Others actually really mean everything.
+It all depends on the engine and what they did with it.
 
