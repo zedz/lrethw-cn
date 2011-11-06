@@ -3,7 +3,7 @@
 Well, it's probably not a good idea to offend Cthuhlu, so we actually want
 to match every line that \emph{does not} have vowels.  Normally that would
 involve you writing out all of the characters that don't match, which is
-tedious and dumb.  Instead, you can invert the set by putting a '^' (caret)
+tedious and dumb.  Instead, you can invert the set by putting a '\^' (caret)
 as the first character inside the set.
 
 \begin{code}{ex5.regex}
@@ -15,7 +15,7 @@ as the first character inside the set.
 To make this work I have to switch to !match mode, which will actually
 match the first character.  I also have to use a more complete "vowels"
 set since I didn't have capital letters in the previous exercise.  Once
-you have that, put the '^' at the front and it will now be an inverse
+you have that, put the '\^' at the front and it will now be an inverse
 set.
 
 \section{What You Should See}
