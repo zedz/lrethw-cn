@@ -5,11 +5,16 @@
     "*.h|pyg|l": {},
     "*.sh|pyg|l": {},
     "*.sql|pyg|l": {},
-    "*.conf|dexy": {},
-    "*Makefile|dexy": {},
-    "*.regex|dexy": {},
-    "*.out|dexy": {},
+    "*.conf": {},
+    "*Makefile": {},
+    "*.regex": {}, 
+    "ex*.regex|regetron": {
+        "ifinput": [
+            "ex%.txt"
+        ]
+    },
+    "*.out": {},
     "*.css|jinja" : {  },
     "*.cfg|jinja" : {  },
-    "*.txt|dexy" : {}
+    "*.txt" : {}
 }
