@@ -1,0 +1,26 @@
+!data "The lazy dog\nsleeps in the yard."
+
+# exercise 1 .*lazy.*
+.    # any character
+*    # repeat, 0-or-more
+lazy
+.    # any character
+*    # repeat, 0-or-more
+
+
+# exercise 1 [A-Z][a-z]*
+[    # start set
+ A-Z  # A through Z
+]    # end set
+[    # then start set
+ a-z  # a through z (lowercase)
+]    # end set
+*    # repeat 0-or-more
+
+
+# exercise 1 [a-z]\.
+[    # start set
+ a-z # a through z
+]    # end set
+\.   # literal . char
+

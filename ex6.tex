@@ -1,17 +1,55 @@
 \chapter{Exercise 6: Translating Simple Regex}
 
+One major problem with regular expressions is you need to sit down
+and manually translate them to and from English to understand them.  Eventually
+this translation happens in your head, but in the beginning you'll
+want to do the work.  Even after you've mastered "regex as a language"
+you'll still want to do this on large regular expressions.
 
-The code and explanation goes here.
+To help you do this, there is a "verbose mode" to the Python regex system, and
+Regetron will let you write these out.  Just hit enter at a prompt, and then
+type in the regex.  When your done enter a blank line.  Here's how you would
+rewrite Exercise 1 to use verbose mode:
+
+\begin{code}{ex6.regex}
+\begin{Verbatim}
+<< d['code/ex6.regex'] >>
+\end{Verbatim}
+\end{code}
+
+The first thing you should notice is I can use comments to describe what
+each character does.  The comment is after the '\#' (octothorpe) character.
+You can also see that I can indent, as I do on lines 13 and 16, which helps
+understand the structure.  I can do this because in verbose mode all
+space and comments are ignored.  One more thing to understand is that to
+make verbose mode work in regetron you have to do an \emph{empty} line
+to start a block, and then another to end it, so there's \emph{two}
+empty lines between blocks.
 
 \section{What You Should See}
 
-What it looks like to run it is here.
+When you run this you should get something like this:
+
+\begin{code}{ex6 Output}
+\begin{Verbatim}
+<< d['code/ex6.regex|regetron']['ex6.txt'] >>
+\end{Verbatim}
+\end{code}
+
+Keep in mind that this is a technique we'll use for manually learning the
+Regex language from here on, and for when you write complex regular
+expressions that you have to maintain.  For simple regex like
+this you would just write them out normally.
 
 \section{Extra Credit}
 
-Extra things you should do on your own to learn more.
+This extra credit is simple but tedious  Write out \emph{all} of the regex you've
+done so far (or as many as you can stomach) in verbose form.  This will
+be tedious and annoying, but the translation process will make you learn
+these symbols well.
+
 
 \section{Portability Notes}
 
-Potential portability problems with this concept in other regex.
-
+Many regex engines do not have a verbose mode.  Keep that in mind when you
+write them and check the documentation.
