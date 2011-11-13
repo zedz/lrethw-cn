@@ -1,17 +1,66 @@
 \chapter{Exercise 8: Optional Elements}
 
+Sometimes you want to match something optionally, meaning it can be there or
+not and it will still match.  You do this with the \verb|'?'| (question-mark)
+character.  Simply put it after the regex symbol or set you want to be optional
+and you'll see it match.  Here's a few URLs to try this on:
 
-The code and explanation goes here.
+\begin{code}{ex8.txt}
+\begin{Verbatim}
+<< d['code/ex8.txt'] >>
+\end{Verbatim}
+\end{code}
+
+Just a few URLs but imagine you want to match any of those as being the same
+thing.  To do that you just put a \verb|'?'| at the end and it will optionally
+match the \verb|[0-9]| character set.  I'm going to write one regex but it's
+in verbose mode so I can comment on each character and you can see it:
+
+\begin{code}{ex8.regex}
+\begin{Verbatim}
+<< d['code/ex8.regex'] >>
+\end{Verbatim}
+\end{code}
+
+First I have the regex like normal, then I wrote it out verbose.  Let's
+walk through how the engine would match the first of our regex:
+
+\begin{description}
+\item[ex8.regex:3] From the start of \verb|/blog/article/1|...
+\item[ex8.regex:4] match \verb|/blog/article/| so that matches.  Now
+    we're on the \verb|1| character of the corpus text.
+\item[ex8.regex:5] Match a \verb|[0-9]| set, and \verb|1| is in that set
+    so match.
+\item[ex8.regex:6] The last thing is optional because of \verb|?| but
+    it matched so this is matched.
+\item[ex8.regex:7] Match the end, and since were are out of characters
+    in the corpus text we are done and this matches.
+\end{description}
 
 \section{What You Should See}
 
-What it looks like to run it is here.
+When you run this you should see it match all of these URLs twice, since
+we have the regex repeated in verbose form for you
+
+\begin{code}{ex8 Output}
+\begin{Verbatim}
+<< d['code/ex8.regex|regetron']['ex8.txt'] >>
+\end{Verbatim}
+\end{code}
+
 
 \section{Extra Credit}
 
-Extra things you should do on your own to learn more.
+\begin{enumerate}
+\item Use this process I followed and manually match the regex against the 
+    other URLs too.  If it helps, write the regex on a piece of paper, and 
+    write the corpus text (the URL) on another part of the paper.  Then underline
+    the parts of the URL that match as you walk through the regex and put
+    you finger on each regex char that matches.
+\item Write some URLs that do not match this regex and explain why they don't.
+\item Using more \verb|?| characters, make more of this regex optional.
+\item Add 4 optional digits at the end so that you can match an article numbered
+    9102.
+\end{enumerate}
 
-\section{Portability Notes}
-
-Potential portability problems with this concept in other regex.
 

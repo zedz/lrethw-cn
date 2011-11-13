@@ -1,0 +1,8 @@
+^/blog/article/[0-9]?$
+
+^     # from the start
+/blog/article/
+[0-9] # any of 0-9
+?     # optional though
+$     # to the end
+
