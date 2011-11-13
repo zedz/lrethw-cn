@@ -1,17 +1,72 @@
 \chapter{Exercise 9: Repetition, Repetition}
 
+Remember in the last two exercises where I kept asking you how you would match
+a URL like \verb|/blog/article/12345|? You might have though the \verb|?| optional
+element was the answer, but actually it's repetition.  What you need is a way to
+tell the regex engine "any number of these".  There's actually three kinds of
+repetition:
 
-The code and explanation goes here.
+\begin{description}
+\item[one-or-more] Element repeats such that there has to be at least one.
+\item[zero-or-more] Element repeats but it's optional, so there could be 0.
+\item[X-or-Y] A minimum of X and a maximum of Y. We'll cover these in the next
+    exercise.
+\end{description}
+
+The regex symbol for "one-or-more" is \verb|+| and for "zero-or-more" is \verb|*|.
+Just like with the "optional" symbol \verb|?| you place it after the regex
+symbol or character set to repeat and that's it.
+
+Here's some URLs we'll try matching, with two way to get at a blog article:
+
+\begin{code}{ex9.txt}
+\begin{Verbatim}
+<< d['code/ex9.txt'] >>
+\end{Verbatim}
+\end{code}
+
+It's slightly contrived but we'll match by a straight numeric ID or by
+the MMM-DD-YYYY date.
+
+\begin{code}{ex9.regex}
+\begin{Verbatim}
+<< d['code/ex9.regex'] >>
+\end{Verbatim}
+\end{code}
+
+I took the most complex regex at the end and wrote it out again so you
+can see my breakdown of it exactly.
 
 \section{What You Should See}
 
-What it looks like to run it is here.
+Running this you should see it match these URLs and you should go back
+and match the verbose form to the short form.
+
+\begin{code}{ex9 Output}
+\begin{Verbatim}
+<< d['code/ex9.regex|regetron']['ex9.txt'] >>
+\end{Verbatim}
+\end{code}
+
+Best way to map the verbose and short form of this is to go character-by-character
+through the regex on line 2, and match the character to the verbose form.
 
 \section{Extra Credit}
 
-Extra things you should do on your own to learn more.
+\begin{enumerate}
+\item Write URLs that do not match these regex at all and explain why they don't.
+\item Take the verbose form regex, and edit it so that you convert it back to
+    short form manually.
+\item Write out the first regex in verbose form.
+\item Change the date regex so that it can match "January-01-2011".
+\item There's a problem with the second regex because it could match dates like
+    "January-34355-929939494".  Is this a good or bad thing?  How would you change
+    the regex to make it more strict?
+\end{enumerate}
 
 \section{Portability Notes}
 
-Potential portability problems with this concept in other regex.
-
+Some regex engines confuse \verb|+| and \verb|*|, or simply don't have 
+the concept.  If you're trying to use \verb|+| and it's not working, try
+just a plain \verb|*| and it should work.  Nearly every regex engine on the
+planet has that at least.

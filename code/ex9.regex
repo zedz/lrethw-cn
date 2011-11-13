@@ -1,0 +1,15 @@
+^/blog/article/[0-9]*$
+^/blog/article/[A-Z]+-[0-9]+-[0-9]+$
+
+^     # from the start
+/blog/article/
+[A-Z] # A-Z for MMM
++     # one-or-more
+-     # dash char
+[0-9] # 0-9 for DD
++     # one-or-more
+-     # dash char
+[0-9] # 0-9 for YYYY
++     # one-or-more
+$     # to the end
+
