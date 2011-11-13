@@ -1,17 +1,64 @@
 \chapter{Exercise 7: The Beginning And End}
 
+I have a list of URLs and I want to match them in certain conditions:
 
-The code and explanation goes here.
+\begin{code}{ex7.txt}
+\begin{Verbatim}
+<< d['code/ex7.txt'] >>
+\end{Verbatim}
+\end{code}
+
+I'd like to match these URLs using so with the following routing requirements:
+
+\begin{enumerate}
+\item Individual blog articles get matched before the list of blog/articles
+    and before the main /blog link.
+\item Anything /admin should go somewhere else, but shouldn't get confused
+    with /blog URLs.
+\end{enumerate}
+
+To do this you use two characters, the \verb|'^'| (caret) and \verb|'$'| (dollar) to
+wrap the regex and anchor it at the front and back.  You can also use them separately
+to anchor to just one side.
+
+\begin{code}{ex7.regex}
+\begin{Verbatim}
+<< d['code/ex7.regex'] >>
+\end{Verbatim}
+\end{code}
+
+In the above I have the same 4 regex listed twice, but the first 4 has the 
+anchors added to them so that they only match completely.
 
 \section{What You Should See}
 
-What it looks like to run it is here.
+When you run this you can see the effect of the anchors:
+
+\begin{code}{ex7 Output}
+\begin{Verbatim}
+<< d['code/ex7.regex|regetron']['ex7.txt'] >>
+\end{Verbatim}
+\end{code}
+
+You can see that the first set works exactly as expected with each regex
+matching one URL.  The second set with out the anchors seems to match
+all the wrong things because it's finding the element anywhere in the
+path.
 
 \section{Extra Credit}
 
-Extra things you should do on your own to learn more.
+\begin{enumerate}
+\item Rerun this but put !match at the beginning of the script to see if it
+    changes things.
+\item Add some more URLs and use anchors to match them as well.
+\item What happens when you have a URL for article 10?  Why does this fail?
+\item Go reasearch the routing engine of a web framework you're familiar with and
+    see how they might use anchors or not.
+\end{enumerate}
 
 \section{Portability Notes}
 
-Potential portability problems with this concept in other regex.
+Depending on the engine you use this could be a speed improvement or not.
+Also some platforms default to this behavior by default, but others do kind
+of a half-way version of this.
 
