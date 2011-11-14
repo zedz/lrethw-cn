@@ -1,17 +1,126 @@
 \chapter{Exercise 10: Frugality In All Things}
 
+You actually now know everything you need to use very basic regular expressions.
+You know how to match all of the following things:
 
-The code and explanation goes here.
+\begin{description}
+\item[characters] Do this by just typing the chars, and using \verb|\| to escape
+    regex symbols you want to match.
+\item[any char] Use the \verb|.| (dot) to match any one char.
+\item[char sets] Use \verb|[]| to make a set, including ranges of characters
+    to match like \verb|[0-9]|
+\item[inverted sets] Put a \verb|^| inside a set and it inverts: \verb|[^a-z]|.
+\item[beginning anchor] A \verb|^| at the beginning of a regex says to "anchor" it
+    so that it only matches at the beginning.
+\item[ending anchor] A \verb|$| at the end of a regex anchors to the end so it only
+    matches at the end.  Combine with \verb|^| to match exactly.
+\item[optional modifier] Put a \verb|?| after a regex symbol, char, or set and it
+    will make that thing optionally matched.
+\item[one-or-more] A \verb|+| after a regex symbol, char, or set and it will
+    match one-or-more of them.
+\item[zero-or-more] A \verb|*| after a regex symbol, char, or set and it's optionall
+    there or repeated (zero or more).
+\end{description}
+
+Mostly everything after this is additional ways to do the following to the above
+concepts:
+
+\begin{enumerate}
+\item Limit repetition in more complex ways.
+\item Group expressions.
+\item Alternate between one or more expressions.
+\item Special regex engine modifications for more complex tasks.
+\end{enumerate}
+
+In this exercise you'll learn to limit repetition in different ways by
+specifying the "greediness" of the expression.  To learn this we'll
+try matching various dates in different formats, but try to be as exact
+as possible.
+
+\begin{code}{ex10.txt}
+\begin{Verbatim}
+<< d['code/ex10.txt'] >>
+\end{Verbatim}
+\end{code}
+
+Once you have that corpus text written out, here's the regex:
+
+\begin{code}{ex10.regex}
+\begin{Verbatim}
+<< d['code/ex10.regex'] >>
+\end{Verbatim}
+\end{code}
+
+I'm using three new kinds of syntax that all do the same thing:
+
+\begin{enumerate}
+\item If you put \verb|{X}| in the same place you'd put a \verb|+| (after
+        something to repeat) then it will make sure that it is repeated
+        \verb|X| times.
+\item If you put \verb|{X,Y}| then it will make sure it repeates at least
+    X times, but not more than Y times.
+\item If you put a \verb|?| after any of the repetition symbols it means
+    "non-greedy".  This is unfortunate because \verb|?| also means
+    "optional" but just remember that placing it after repetition means
+    "non-greedy".
+\end{enumerate}
+
+The way to explain "non-greedy" is simply that most regex engines try to 
+match repetition to the biggest part of the corpus text possible.  If you
+run into situations where you're matching too much with repetition, then
+you can use \verb|?| to tell it to match the \emph{smallest} repetition
+possible.
+
+I can then break down each of the symbols I used in this regex file:
+
+\begin{description}
+\item[ex10.regex:1] In this regex I use \verb|{X}| to limit the month to
+    3 characters (\verb|[A-Z]{3}|), the day to 2 digits (\verb|[0-9]{2}|), and
+    the year to 4 digits (\verb|[0-9]{4}|).
+\item[ex10.regex:2] This one I'm using the \verb|+?| to match as many characters
+    for the month as possible, but to make it the smallest match possible.  Remember
+    the \verb|?| after the \verb|+| does this.  I also use \verb|{2,4}?| at the
+    end to match 2 to 4 characters for the year, but the \verb|?| will make 
+    it match the smallest.
+\item[ex10.regex:3] Finally I'm mixing these up to match 2 or 4 elements of
+    the date.
+\end{description}
+
+
 
 \section{What You Should See}
 
-What it looks like to run it is here.
+When you run this it should match each of the dates correctly:
+
+\begin{code}{ex10 Output}
+\begin{Verbatim}
+<< d['code/ex10.regex|regetron']['ex10.txt'] >>
+\end{Verbatim}
+\end{code}
+
 
 \section{Extra Credit}
 
-Extra things you should do on your own to learn more.
+\begin{enumerate}
+\item Write each of these out in verbose form and make sure you get the comments
+    after each part.
+\item Write out some index cards with all of the symbols you've learned so far,
+    including these new ones.  On the front write the symbol/expression, and 
+    on the back write the phrase for it.  For example, looking at the list
+    at the beginning of this exercise, I'd put \verb|[]| on one side, and "char set"
+    on the other side.
+\item Drill with these cards for 15 minutes before you go to bed.  Put the ones
+    you keep getting wrong into a separate pile.  The next day, while you work
+    take a break and drill the ones you keep getting wrong only.  Repeat this
+    until you get them write easily.
+\end{enumerate}
 
 \section{Portability Notes}
 
-Potential portability problems with this concept in other regex.
+Some regex engines do not have the \verb|{X,Y}| or \verb|{X}| syntax. Other
+regex engines that have it become horribly slow when you give exact matching
+counts.  I've found that it's best to just not use this syntax unless you
+absolutely need to, and instead to your data validation in your software
+after matching.
+
 
