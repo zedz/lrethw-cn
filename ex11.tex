@@ -1,17 +1,77 @@
 \chapter{Exercise 11: This Or That}
 
+You should have been drilling your vocabulary from the last exercise every night and day until you know it cold.  I know you probably absolutely \emph{hate} drilling
+and memorizing things, but it's an important skill to pick up if you want to
+accelerate your learning on almost any subject.  Memorization isn't useful for
+learning how to creatively apply skills, but it is the fastest way to acquire
+the foundational basics of a new skill.
 
-The code and explanation goes here.
+Now that you've learned the core of regex solidly I'll show you more advanced things
+that work with those building blocks.  First up is the concept of "alternating".
+Here's a corpus text we'll work with:
+
+\begin{code}{ex11.txt}
+\begin{Verbatim}
+<< d['code/ex11.txt'] >>
+\end{Verbatim}
+\end{code}
+
+What we want to do is match different lines with one regex in 4 different ways:
+
+\begin{code}{ex11.regex}
+\begin{Verbatim}
+<< d['code/ex11.regex'] >>
+\end{Verbatim}
+\end{code}
+
+You see the \verb,'|', character between the \verb|[0-9]+| and \verb|[A-Z]+|
+expressions? The reason I wanted you to know the basic symbols of regex solidly
+is that you will encounter a regex like this and not know what the \verb,|, does.
+However, you \emph{do} know what all the other symbols do and can read them.
+That means you can break it down and then go find out what the missing pieces mean.
+I'll do it for the first one:
+
+\begin{enumerate}
+\item from the start
+\item 0-9 set
+\item one-or-more
+\item Hmm, don't know what that is.
+\item A-Z set
+\item one-or-more
+\item to the end
+\end{enumerate}
+
+You can now make a guess what the \verb,|, does, probably some kind of "OR" as
+in a programming language.  That's actually correct, it says "this OR that expression", and it's called "alternating".  The reason you call this "alternating" is it
+causes the regex engine to try both expressions on either side of the regex until
+one fails, then it continues until that one matches or they both fail.
 
 \section{What You Should See}
 
-What it looks like to run it is here.
+When you run this you'll see that each regex matches a different line or
+set of lines:
+
+\begin{code}{ex11 Output}
+\begin{Verbatim}
+<< d['code/ex11.regex|regetron']['ex11.txt'] >>
+\end{Verbatim}
+\end{code}
+
+Using the idea of "alternating" try to explain how the line matches and why.
 
 \section{Extra Credit}
 
-Extra things you should do on your own to learn more.
+\begin{enumerate}
+\item Add the \verb,|, "alternator" symbol to your deck of cards and start drilling
+    it too.  You can also just call it "OR".
+\item Rewrite these regex in verbose mode similar to how I did the breakdown above.
+    Just write the English name for the symbol.
+\item KEEP DRILLING THOSE SYMBOLS.  It's hard work but you gotta do it, and it 
+    pays off big time in making your brain strong.
+\end{enumerate}
 
 \section{Portability Notes}
 
-Potential portability problems with this concept in other regex.
-
+Some regex engines don't implement alternating efficiently and instead add all
+sorts of backtracking and other problems.  Be careful when using it and read
+the docs to make sure.
