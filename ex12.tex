@@ -1,17 +1,50 @@
 \chapter{Exercise 12: Translating Complex Regex}
 
+I'm now going to give you a big assignment to push your learning a bit further.
+One way to speed up your education is to periodically pick something seemingly
+impossible and sit down to solve it for a few hours.  Even if you completely
+fail at it, the act of trying pushes your knowledge past where you thought it
+could go.  Sometimes though you figure out that you actually know more than you
+thought and you build new confidence.  Doing this also gets you out of a
+"training rut" where you just do the same exercises over and over yet feel like
+you're never improving.
 
-The code and explanation goes here.
+I've found a reasonably complex regular expression for matching IP addresses.
+It has most of the symbols you already know, and some that you don't know.
+Here's the regex you'll be working with:
 
-\section{What You Should See}
+\begin{code}{ex12.regex}
+\begin{Verbatim}
+<< d['code/ex12.regex'] >>
+\end{Verbatim}
+\end{code}
 
-What it looks like to run it is here.
+What you will do is this:
+
+\begin{enumerate}
+\item Write a corpus text file with about 5 IP addresses and 5 dates in it.
+\item Make sure this regex matches those 5 IP address and not the dates.  Feel
+    free to copy-paste the original regex to make sure you've got it right.
+\item Start a copy of the regex and rewrite it in verbose form the way you
+    have been.  Remember to put a blank line to start verbose mode, and then
+    end it with a blank line.
+\item Any symbols you don't know you should look up in the Python
+    \href{http://docs.python.org/library/re.html}{re library documentation}.
+\item As you rewrite it into verbose form, keep running regetron to make sure
+    that the two regex continue to match what they used to match.  Think of
+    this as the same as running your unit tests.
+\item When you're done, write a single paragraph explaining how this regex
+    works.
+\end{enumerate}
 
 \section{Extra Credit}
 
-Extra things you should do on your own to learn more.
+\begin{enumerate}
+\item Simplify this regex to a smaller one that matches the same lines.
+\item Disprove this new simpler regex is "accurate" by devising a IP address
+    that is wrong but which your new regex matches while the bigger one 
+    does not.
+\item Find another regex of about the same size and convert it as well.
+\end{enumerate}
 
-\section{Portability Notes}
-
-Potential portability problems with this concept in other regex.
 
