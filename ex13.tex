@@ -14,14 +14,22 @@ attention:
 \end{Verbatim}
 \end{code}
 
-I can already see the fear in your eyes, so I'm going to write these regex
-in verbose form so you can take them slow and see what I'm doing:
+Pay attention: \emph{These lines are your corpus text not your regex.} Repeat
+after me, these are the lines of text you are looking for, \emph{not} the
+regex.  The next file is the regex.
+
+I can already see the fear in your eyes, so I'm going to write the regex
+we'll use in verbose form so you can take them slow and see what I'm doing:
 
 \begin{code}{ex13.regex}
 \begin{Verbatim}
 << d['code/ex13.regex'] >>
 \end{Verbatim}
 \end{code}
+
+Again, \emph{pay attention!} That file is the \file{ex13.regex} and it \emph{is
+the regex that does the matching}. The other one above is \file{ex13.txt} and
+it's is the \emph{corpus text}.  Get that straight in your mind before continuing.
 
 Even in verbose form this is pretty heinous.  In all honesty, if you're
 trying to do this you shouldn't use a regex but should use a real lexer.
