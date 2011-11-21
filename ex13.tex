@@ -1,17 +1,70 @@
 \chapter{Exercise 13: Escaping Things}
 
+You know most of the symbols and now you have a problem:  How do you match
+the symbols rather than use them?  For example, what if you wanted to match a
+regex with a regex?  You'd need a way to "escape" the symbols that are in the
+regex you want to match, and you do that the same way you do in most
+programming languages with the \verb|\| (backslash) character.  Let's give
+it a try, but I have to warn you this will probably warp your brain so pay
+attention:
 
-The code and explanation goes here.
+\begin{code}{ex13.txt}
+\begin{Verbatim}
+<< d['code/ex13.txt'] >>
+\end{Verbatim}
+\end{code}
+
+I can already see the fear in your eyes, so I'm going to write these regex
+in verbose form so you can take them slow and see what I'm doing:
+
+\begin{code}{ex13.regex}
+\begin{Verbatim}
+<< d['code/ex13.regex'] >>
+\end{Verbatim}
+\end{code}
+
+Even in verbose form this is pretty heinous.  In all honesty, if you're
+trying to do this you shouldn't use a regex but should use a real lexer.
+I'll be showing you how to write one of those but the exercise is good for
+being able to understand regex like this.
+
+In the first regex I'm trying to match, "Any regex that starts with \verb|.*[|,
+has something inside the character set, and then ends with \verb|].*|."  To do
+this I have to escape each of the regex chars I want to match using the \verb|\|
+character.
+
+The other regex are going to be part of an extra credit so I'm not going to
+explain them.
 
 \section{What You Should See}
 
-What it looks like to run it is here.
+When you run this you should see each regex match only one line of the corpus
+text file:
+
+\begin{code}{ex13 Output}
+\begin{Verbatim}
+<< d['code/ex13.regex|regetron']['ex13.txt'] >>
+\end{Verbatim}
+\end{code}
+
+If it doesn't work make sure you're putting the proper number of newlines between
+regex.  Remember, an empty line starts verbose mode, and another ends it, so you
+need two between each one.
 
 \section{Extra Credit}
 
-Extra things you should do on your own to learn more.
+\begin{enumerate}
+\item Take the other two regex and write a similar English sentence describing what
+    they're mapping.
+\item Convert the regex back to normal form from verbose.
+\item Write lines of corpus text that match each of these regex in new ways.
+\item Write lines of corpus text that do not match the regex, then modify the
+    regex to make them match.
+\end{enumerate}
 
 \section{Portability Notes}
 
-Potential portability problems with this concept in other regex.
-
+Many regex engines also use the \verb|\| (backslash) character to add extra
+features, so be careful when you use it on letters and numbers.  You don't
+need to escape letters and numbers, and they'll potentially clash with some
+feature of the regex engine.
