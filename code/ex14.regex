@@ -1,0 +1,3 @@
+!data "\t\tI have spacing\t\t\nI have 12345 cheeses!"
+\s+\w+ have \w+\s+
+.*have\s\d*\s.*

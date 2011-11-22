@@ -1,13 +1,9 @@
 \chapter{Exercise 14: Escape Sequences You May Need}
 
-
-
-\begin{code}{ex14.txt}
-\begin{Verbatim}
-<< d['code/ex14.txt'] >>
-\end{Verbatim}
-\end{code}
-
+Go to the Python \href{http://docs.python.org/library/re.html}{re library documentation page} and search for "special sequences".  Python's re library is what I'm
+using in Regetron and it supports most of the standard special escape sequences 
+found in other regex engines.  These sequences can be thought of as "macros"
+for common things you do in regular expressions.
 
 \begin{code}{ex14.regex}
 \begin{Verbatim}
@@ -15,9 +11,15 @@
 \end{Verbatim}
 \end{code}
 
+This script uses the most useful special sequences to match spacing and
+"words": \verb|\s|, \verb|\d|, and \verb|\w|.  Go through this script and make
+sure you can identify each of the special sequences used and look up 
+what they do.
 
 \section{What You Should See}
 
+When you run this script you should see each regex match its line as
+expected.
 
 \begin{code}{ex14 Output}
 \begin{Verbatim}
@@ -29,9 +31,15 @@
 \section{Extra Credit}
 
 \begin{enumerate}
-\item 
+\item Rewrite these regex in verbose form and include the names for the special
+    sequences used.
+\item Come up with your own script that demonstrates the other special sequences.
+\item Add the sequences you could get to work to your list of cards and start
+    drilling them each night.  To be honest, the only ones I know by heart are
+    the ones I used in this exercise's script.
 \end{enumerate}
 
 \section{Portability Notes}
 
-Potential portability problems with this concept in other regex.
+Regex engines will typically come up with other escape sequences so you'll
+need to refer to your documentation if you're not using the Python re library.
