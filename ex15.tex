@@ -1,17 +1,74 @@
 \chapter{Exercise 15: Grouping And Captures}
 
+\begin{quote}
+You will need the latest Regetron for this exercise to work.  Make sure you have
+at least version 1.4.  Do \verb|pip install --upgrade regetron| to get the new
+one.
+\end{quote}
 
-The code and explanation goes here.
+You can match lines, but what if you just want the parts of a line that match?  
+In this exercise you'll learn how to create a regex that has a "grouping" in it,
+which tells the regex engine to return only that part, and not the whole line.
+You create a group by surrounding the part of the regex you want to extract
+with parenthesis \verb|()| characters.
+
+Here's a corpus text with two lines I'll play with:
+
+\begin{code}{ex15.txt}
+\begin{Verbatim}
+<< d['code/ex15.txt'] >>
+\end{Verbatim}
+\end{code}
+
+The first line is just some pairs of numbers and letters, and I want to 
+get only the numbers.  The second line has an email address in it and I
+want to extract the email address.  To do that here's 4 regex:
+
+\begin{code}{ex15.regex}
+\begin{Verbatim}
+<< d['code/ex15.regex'] >>
+\end{Verbatim}
+\end{code}
+
+Each of these lines first shows the regex without parenthesis, then
+with parenthesis.  The version without will just print the line like
+you have been experiencing.  The version \emph{with} parenthesis
+will print only what's been matched as a list of items.
 
 \section{What You Should See}
 
-What it looks like to run it is here.
+When you run this you'll see first the line get matched, then the 
+groups that match with the grouped (parenthesis) version after that.
+
+\begin{code}{ex15 Output}
+\begin{Verbatim}
+<< d['code/ex15.regex|regetron']['ex15.txt'] >>
+\end{Verbatim}
+\end{code}
+
+It's fairly straight forward, and all you need to know is put parenthesis
+around a chunk of regex and regetron will print out a list of what matched.
 
 \section{Extra Credit}
 
-Extra things you should do on your own to learn more.
+\begin{enumerate}
+\item How do you match something with parenthesis then?  You know this but go
+    back and slash through until you figure it out.
+\item Create an email address that makes the email regex fail, then improve the
+    email regex until it works.
+\item Use the \verb,|, (or, alternate) symbol to have numbers or letters captured.
+    Hint if you put it between two groups it will alternate between the groups.
+\item How do you interpret these results now that it's doing an alternating grouping?
+    Can you use just one group and still find numbers or letters?
+\item Change the line so that it has something that's not letters or numbers
+    and make sure your regex still only extracts numbers and letters.
+\item Write an email regex that only captures the host name after the \verb|@| but
+    still matches a regex. Hint: You don't have to put the parenthesis around the
+    whole regex.
+\item Read the Python \file{re} module documentation about groups.
+\end{enumerate}
 
 \section{Portability Notes}
 
-Potential portability problems with this concept in other regex.
-
+Some regex engines are really bad at efficiently gathering captures, or do it
+in weird ways.  Consult your API to see what's possible.
