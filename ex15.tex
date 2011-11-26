@@ -46,8 +46,11 @@ groups that match with the grouped (parenthesis) version after that.
 \end{Verbatim}
 \end{code}
 
-It's fairly straight forward, and all you need to know is put parenthesis
-around a chunk of regex and regetron will print out a list of what matched.
+You should first notice that the regex \verb|([0-9]+)| returned a list with all of the
+numbers match that looks like \verb|['10', '12', '30']| which is simply a Python
+formatted list.  Next you'll see the email regex returns just \verb|['help@learncodethehardway.org']|
+which is just the email in a list by itself.  If you put more email addresses on that line
+it would return all of them.
 
 \section{Extra Credit}
 
