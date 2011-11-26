@@ -1,17 +1,91 @@
 \chapter{Exercise 16: Search And Replace}
 
+Now that you know about groupings I'm going to show you how to do search and
+replace.  If you remember from the last exercise you can surround a regex with
+parenthesis and it'll create a capture.  In this exercise I'll show you how
+to use that to extract parts of a string and then replace them, as well
+as just doing simple replacements.
 
-The code and explanation goes here.
+To do this exercise I'll make a corpus text that has an IP address, some
+numbers, and a web URL that's wrong.  Then I'll play with them.
+
+\begin{code}{ex16.txt}
+\begin{Verbatim}
+<< d['code/ex16.txt'] >>
+\end{Verbatim}
+\end{code}
+
+I want to make a search/replace that replaces only IP addresses with
+"X.X.X.X" so that it is sanitized.  I want another regex that will fix this
+URL so that it has \emph{https} and is a correct URL not just a file.
+
+\begin{code}{ex16.regex}
+\begin{Verbatim}
+<< d['code/ex16.regex'] >>
+\end{Verbatim}
+\end{code}
+
+The first line I'm doing the IP address replace wrong, which you can see
+when we run it as it replace *all* numbers with X.  The second regex is
+more correct and replaces only the IP address.  From these two you can see
+the form for a replace in Regetron is:
+
+\begin{enumerate}
+\item !rep to start a \emph{rep}lace
+\item A \verb|/| to set the bound of the \emph{search} part.
+\item A regex for searching
+\item Another \verb|/| to end the search part.
+\item A string for the \emph{replace} part.
+\item An ending \verb|/| to end the whole thing.
+\end{enumerate}
+
+That means the form is \verb|!rep /SEARCH/REPLACE/| but there's a great modification
+to this that comes in handy.  The \verb|/| can be any character, which solves the
+problem of doing a search/replace inside a string that has a \verb|/| character
+in it already.  I demo this in the third regex by using \verb|!rep ,SEARCH,REPLACE,|
+instead.
+
+The final thing to look at is the third regex has a grouping (aka capture), which 
+you know about, but then I do \verb|\1|.  What this does it is grabs the first
+group that was matched (that's the 1) and \emph{inserts} it right there in the
+replace.
 
 \section{What You Should See}
 
-What it looks like to run it is here.
+Pay special close attention to this and make sure you understand how the replacements
+are working:
+
+\begin{code}{ex16 Output}
+\begin{Verbatim}
+<< d['code/ex16.regex|regetron']['ex16.txt'] >>
+\end{Verbatim}
+\end{code}
+
+The most important part is the last regex and the use of the \verb|\1| to grab
+the group from the search part and put it in the replace part.  In this case
+the \verb|(.+?)| is matching the \verb|index.html| part, and then the \verb|\1|
+is placing it in the corrected link inside the replace.  One more thing to
+realize is if you had 3 groups in the search, then you'd have access to \verb|\2|
+and \verb|\3| as well.
 
 \section{Extra Credit}
 
-Extra things you should do on your own to learn more.
+\begin{enumerate}
+\item If you use Vim or Emacs then you have access to this as a search and 
+    replace operation.  In vim try loading the corpus text and typing 
+    \verb|:%s ,http://\(.*\)/,https://site.com/\1,|
+    which has a slightly different search part so pay attention.  Notice
+    I have to escape the parens with \verb|\(|.
+\item Write a search replace that replace animals with just "dog", because
+    dogs are better.
+\item Write a regex that takes a URL with a file path and keeps everything
+    but the file, replacing it with \verb|/index.html|.
+\item Why did I use \verb|.+?| instead of just \verb|.+| to do the last group?
+\end{enumerate}
 
 \section{Portability Notes}
 
-Potential portability problems with this concept in other regex.
+As mentioned in the Extra Credit you have to escape the parenthesis in
+groups when you do this in Vim.  Other regex engines use a slightly
+different API and way of doing search/replace.
 
